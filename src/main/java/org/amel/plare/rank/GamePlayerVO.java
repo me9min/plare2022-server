@@ -1,10 +1,8 @@
 package org.amel.plare.rank;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-/** in -game player class
- *  게임 내부적으로 존재하는 플레이어 클래스
- */
 @Getter
 @Setter
 public class GamePlayerVO {

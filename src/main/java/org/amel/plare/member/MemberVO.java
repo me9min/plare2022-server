@@ -1,11 +1,10 @@
 package org.amel.plare.member;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-/** user class for webpage login and auth
- *  계정 인증 및 웹페이지 로그인 담당 계정 클래스
- */
-@Data
+@Getter
+@Setter
 public class Member {
 
     /** 웹 멤버 아이디 */
@@ -29,4 +28,3 @@ public class Member {
     /** 스팀ID(사설서버게임 ID), store.store_players 테이블의 authid와 같다 */
     private String steamid;
 }
-
