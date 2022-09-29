@@ -1,9 +1,9 @@
-package model;
+package org.amel.plare.rank;
 
 import lombok.*;
 
 @Data
-public class Player {
+public class GamePlayer {
 
     /** shows authorisation ID of user
      *  인증용 아이디 생성
