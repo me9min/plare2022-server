@@ -1,9 +1,11 @@
 package org.amel.plare.rank;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class GamePlayer {
+@Getter
+@Setter
+public class GamePlayerVO {
 
     /** shows authorisation ID of user
      *  인증용 아이디 생성
@@ -29,8 +31,4 @@ public class GamePlayer {
      *  마지막 로그인 날짜
      */
     private int lastLoginDate;
-
-    /** tentative (임시 비활성화)
-     */
-//    private long cash
 }
