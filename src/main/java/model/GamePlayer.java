@@ -1,4 +1,4 @@
-package org.amel.plare.rank;
+package model;
 
 import lombok.*;
 
@@ -34,6 +34,7 @@ public class GamePlayer {
     private int lastLoginDate;
 
     /** tentative (임시 비활성화)
+     *
      */
 //    private long cash
 }
