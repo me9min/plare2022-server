@@ -1,11 +1,9 @@
 package org.amel.plare.member;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-public class Member {
+@Data
+public class MemberVO {
 
     /** 웹 멤버 아이디 */
     private String id;
@@ -20,10 +18,10 @@ public class Member {
     private String email;
 
     /** 가입날짜 유닉스시간 */
-    private String date_of_join;
+    private String dateOfJoin;
 
     /** 마지막접속날짜 유닉스시간 */
-    private String date_of_last_join;
+    private String dateOfLastJoin;
 
     /** 스팀ID(사설서버게임 ID), store.store_players 테이블의 authid와 같다 */
     private String steamid;

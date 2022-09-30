@@ -1,10 +1,8 @@
 package org.amel.plare.rank;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class GamePlayerVO {
 
     /** shows authorisation ID of user
