@@ -1,4 +1,4 @@
-package org.amel.plare.Shop;
+package org.amel.plare.shop;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

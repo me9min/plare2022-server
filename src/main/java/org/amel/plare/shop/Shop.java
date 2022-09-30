@@ -1,8 +1,5 @@
-package org.amel.plare.Shop;
+package org.amel.plare.shop;
 import lombok.*;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /** a shop class to represent a Shop and the items it sell
  * 아이템 품목/가격 등을 보여주는 샵 클래스
