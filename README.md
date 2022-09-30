@@ -18,6 +18,12 @@
 
 
 
+## 서버 구성도
+
+![image](https://user-images.githubusercontent.com/28896454/193286428-135d5d4b-1c7f-424f-843f-7c084a05c5bf.png)
+
+
+
 ## 구현 기능
 
 ### 기능 1
