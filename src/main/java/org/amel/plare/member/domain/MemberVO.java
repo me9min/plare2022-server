@@ -1,11 +1,11 @@
-package org.amel.plare.member;
+package org.amel.plare.member.domain;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Member {
+public class MemberVO {
 
     /** 웹 멤버 아이디 */
     private String id;
