@@ -1,4 +1,4 @@
-package org.amel.plare.rank;
+package org.amel.plare.rank.domain;
 
 import lombok.Data;
 
