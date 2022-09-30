@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/28896454/193284833-4b58a803-48b8-414e-9b97-a690a408b057.png)# plare2022
+# plare2022
 
 ![PlareLogo.jpg (260×122)](https://amel.kr/assets/images/PlareLogo.jpg)
 
