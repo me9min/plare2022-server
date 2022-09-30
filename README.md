@@ -24,21 +24,44 @@
 
 
 
+## 깃 플로우
+
+<img src="https://user-images.githubusercontent.com/28896454/193311725-7076082e-fbf0-4bdf-93ba-ad92f1ff0663.png"  width="600" height="800"/>
+
+- feature브랜치 : feature-유저명으로 명명함
+  - push할때 코드리뷰요청가능
+  - 코드가 이상하다면 다시 작성후 push한다.
+- develop브랜치 : feature브랜치에서 완성된 기능들을 develop브랜치에 넣음
+  - 기능들이 일부 완성되면 feature에서 pull후 사용하면 될듯함
+  - feature기능들이 전부 완성되고 merge후 release로 push
+- release브랜치 : 출시전 최종테스트 단계 브랜치
+  - 버그가 있다면 다시 feature단계부터 개발
+- hotfix브랜치 : 출시한 버전이 버그가있으면 여기서 수정후 재출시
+  - 버그있을때 release대체 브랜치
+- master브랜치 : release브랜치에서 최종테스트 후 버그가 없으면 출시
+  - tag명은 x.y.z
+    - x : 주버전, 이전 기능과 호환되지 않는 기능추가
+    - y : 부버전, 이전 기능과 호환되는 기능추가
+    - z : 수버전, 버그수정
+  - 배포가 완성(master브랜치에 push)되면  feature -> develop 머지후 feature 브랜치 전부삭제
+
+
+
+
+
 ## 구현 기능
 
-### 기능 1
+### 유저명
+
+#### A기능 
+
+설명
 
 
 
-### 기능 2
+#### B기능 
 
-
-
-### 기능 3
-
-
-
-### 기능 4
+설명
 
 
 
