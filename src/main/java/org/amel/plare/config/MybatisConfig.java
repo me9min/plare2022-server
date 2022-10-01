@@ -24,8 +24,7 @@ public class MybatisConfig {
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		sqlSessionFactoryBean.setTypeAliasesPackage("org.amel.plare.**.domain");
 
-		sqlSessionFactoryBean
-				.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
 		return sqlSessionFactoryBean.getObject();
 	}
 
