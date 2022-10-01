@@ -1,4 +1,4 @@
-package org.amel.plare.member;
+package org.amel.plare.member.domain;
 
 import lombok.Data;
 
