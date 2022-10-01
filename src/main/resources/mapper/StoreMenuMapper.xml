@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="store_menu">
-	<insert id="insertStoreMenu">
-		INSERT INTO store.store_menu
+<mapper namespace="storeMenu">
+	<insert id="insert">
+		INSERT INTO store_menu
 		(group_id, type_id, price, name, flag, attribute_json, description)
 		VALUES(#{groupId}, #{typeId}, #{price}, #{name}, #{flag}, #{attributeJson}, #{description});
 	</insert>
+	<select id="list">
+		SELECT id, group_id, type_id, price, name, flag, attribute_json, description
+		FROM store.store_menu;
+	</select>
 </mapper>
