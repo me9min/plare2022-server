@@ -5,8 +5,6 @@ import lombok.Data;
 @Data
 public class StoreMenuVO {
     
-    private int id;
-    
     private int groupId;
     
     private int typeId;
