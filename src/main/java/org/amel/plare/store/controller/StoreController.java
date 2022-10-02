@@ -43,9 +43,13 @@ public class StoreController {
      */
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
     public StoreMenuPageVO listStoreMenu(@RequestBody StoreMenuPageVO page, @PathVariable int pageid) {
+        if(page == null) {
+            page = StoreMenuPageVO.DEFAULT;
+        }
         if(pageid > page.getMaxPage()) {
             throw new IllegalArgumentException("page number exceeds max");
         }
+
         return storeMenuService.listStoreMenuByPage(page, pageid);
     }
 

@@ -50,7 +50,7 @@ public class StoreMenuService {
 
     public StoreMenuPageVO listStoreMenuByPage(StoreMenuPageVO page, int newPageId) {
 
-        StoreMenuPageVO newPage = new StoreMenuPageVO();
+
 
 //        for(int i = (newPageId-1) * page.getItemsperpage(); i<= page.getItemsperpage()* (newPageId) ; i++){
 //
@@ -60,10 +60,7 @@ public class StoreMenuService {
                 itemObj.getId() <= page.getItemsperpage() * (newPageId)
                 && itemObj.getId() > page.getItemsperpage()* (newPageId-1)).collect(Collectors.toList());
 
-        newPage.setPage(newPageId);
-        newPage.setContent(newPageList);
-        newPage.setMaxPage(page.getMaxPage());
-        newPage.setItemsperpage(page.getItemsperpage());
+        StoreMenuPageVO newPage = new StoreMenuPageVO(page,newPageId, newPageList);
 
         return newPage;
     }
