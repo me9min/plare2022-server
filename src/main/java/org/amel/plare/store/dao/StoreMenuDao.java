@@ -1,6 +1,7 @@
 package org.amel.plare.store.dao;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.amel.plare.store.domain.StoreMenuVO;
 import org.apache.ibatis.session.SqlSession;

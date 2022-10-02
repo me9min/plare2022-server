@@ -1,8 +1,10 @@
 package org.amel.plare.store.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.amel.plare.store.dao.StoreMenuDao;
+import org.amel.plare.store.domain.StoreMenuPageVO;
 import org.amel.plare.store.domain.StoreMenuVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +45,26 @@ public class StoreMenuService {
      * @return a List of all items in the Store_menu db
      */
     public List<StoreMenuVO> listStoreMenu() {
-        
         return storeMenuDao.listStoreMenu();
+    }
+
+    public StoreMenuPageVO listStoreMenuByPage(StoreMenuPageVO page, int newPageId) {
+
+        StoreMenuPageVO newPage = new StoreMenuPageVO();
+
+//        for(int i = (newPageId-1) * page.getItemsperpage(); i<= page.getItemsperpage()* (newPageId) ; i++){
+//
+//        }
+
+        List<StoreMenuVO> newPageList = this.listStoreMenu().stream().filter(itemObj ->
+                itemObj.getId() <= page.getItemsperpage() * (newPageId)
+                && itemObj.getId() > page.getItemsperpage()* (newPageId-1)).collect(Collectors.toList());
+
+        newPage.setPage(newPageId);
+        newPage.setContent(newPageList);
+        newPage.setMaxPage(page.getMaxPage());
+        newPage.setItemsperpage(page.getItemsperpage());
+
+        return newPage;
     }
 }

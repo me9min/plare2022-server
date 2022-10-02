@@ -2,13 +2,12 @@ package org.amel.plare.store.controller;
 
 import java.util.List;
 
+import org.amel.plare.store.domain.StoreMenuPageVO;
 import org.amel.plare.store.domain.StoreMenuVO;
 import org.amel.plare.store.service.StoreMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 /** controller class for store
  *  스토어 컨트롤러 API 클래스
@@ -43,8 +42,11 @@ public class StoreController {
      * @return list of items in shop / 샵 내부 아이템 리스트
      */
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
-    public List<StoreMenuVO> listStoreMenu() {
-
-        return storeMenuService.listStoreMenu();
+    public StoreMenuPageVO listStoreMenu(@RequestBody StoreMenuPageVO page, @PathVariable int pageid) {
+        if(pageid > page.getMaxPage()) {
+            throw new IllegalArgumentException("page number exceeds max");
+        }
+        return storeMenuService.listStoreMenuByPage(page, pageid);
     }
+
 }
