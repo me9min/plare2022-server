@@ -41,16 +41,22 @@ public class StoreController {
      * 샵 메뉴 리스트
      * @return list of items in shop / 샵 내부 아이템 리스트
      */
-    @RequestMapping(value = "/menu", method = RequestMethod.GET)
-    public StoreMenuPageVO listStoreMenu(@RequestBody StoreMenuPageVO page, @PathVariable int pageid) {
-        if(page == null) {
-            page = StoreMenuPageVO.DEFAULT;
-        }
-        if(pageid > page.getMaxPage()) {
-            throw new IllegalArgumentException("page number exceeds max");
-        }
+//    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+//    public StoreMenuPageVO listStoreMenu(@RequestBody StoreMenuPageVO page, @PathVariable int pageid) {
+//        if(page == null) {
+//            page = StoreMenuPageVO.DEFAULT;
+//        }
+//        if(pageid > page.getMaxPage()) {
+//            throw new IllegalArgumentException("page number exceeds max");
+//        }
+//
+//        return storeMenuService.listStoreMenuByPage(page, pageid);
+//    }
 
-        return storeMenuService.listStoreMenuByPage(page, pageid);
+    @RequestMapping(value = "/menu/{pageid}", method = RequestMethod.GET)
+    public List<StoreMenuVO> listStoreMenu(@PathVariable String pageid) {
+
+        return storeMenuService.listStoreMenuByPageMock(Integer.valueOf(pageid));
     }
 
 }
