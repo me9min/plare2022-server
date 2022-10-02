@@ -20,6 +20,6 @@ public class StoreMenuDao {
     
     public List<StoreMenuVO> listStoreMenu() {
         
-        return sqlSession.selectList("storeMenu.list");
+        return sqlSession.selectList("storeMenu.selectList");
     }
 }
