@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
-	
+
 	<select id="findPasswordById" resultType="String">
 		SELECT password
 		FROM plaredb.member
-		WHERE id = #{id};
+		WHERE auth_id = #{auth_id};
 	</select>
-	
+
+	<insert id="insertMember">
+		INSERT INTO plaredb.member
+		(auth_id, password, name, email, date_of_join, date_of_last_join, steamid)
+		VALUES(#{auth_id}, #{password}, #{name}, #{email}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP(), #{steamid});
+	</insert>
+
+	<select id="selectOneMember">
+		SELECT auth_id, password, name, email, date_of_join, date_of_last_join, steamid
+		FROM plaredb.member
+		WHERE auth_id = #{auth_id}
+	</select>
+
 </mapper>
