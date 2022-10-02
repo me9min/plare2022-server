@@ -15,11 +15,11 @@ public class StoreMenuDao {
     
     public int insertStoreMenu(StoreMenuVO storeMenu) {
         
-        return sqlSession.insert("storeMenu.insert", storeMenu);
+        return sqlSession.insert("StoreMenuMapper.insertStoreMenu", storeMenu);
     }
     
     public List<StoreMenuVO> listStoreMenu() {
         
-        return sqlSession.selectList("storeMenu.selectList");
+        return sqlSession.selectList("StoreMenuMapper.listStoreMenu");
     }
 }
