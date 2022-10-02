@@ -1,11 +1,11 @@
-package org.amel.plare.member.dao;
+package org.amel.plare.member.domain;
 
 import lombok.Data;
 
 @Data
 public class MemberLoginVO {
     
-    private String id;
+    private String authId;
     
     private String password;
 }

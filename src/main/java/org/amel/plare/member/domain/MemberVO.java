@@ -6,7 +6,7 @@ import lombok.Data;
 public class MemberVO {
     
     /** 웹 멤버 아이디 */
-    private String id;
+    private String authId;
     
     /** 비밀번호, DB에 들어가기전에 암호화 되어야함 */
     private String password;
@@ -18,11 +18,11 @@ public class MemberVO {
     private String email;
     
     /** 가입날짜 유닉스시간 */
-    private String dateOfJoin;
+    private int dateOfJoin;
     
     /** 마지막접속날짜 유닉스시간 */
-    private String dateOfLastJoin;
+    private int dateOfLastJoin;
     
     /** 스팀ID(사설서버게임 ID), store.store_players 테이블의 authid와 같다 */
-    private String steamid;
+    private String steamId;
 }

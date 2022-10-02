@@ -1,6 +1,6 @@
 package org.amel.plare.member.controller;
 
-import org.amel.plare.member.dao.MemberLoginVO;
+import org.amel.plare.member.domain.MemberLoginVO;
 import org.amel.plare.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

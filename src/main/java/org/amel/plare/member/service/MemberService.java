@@ -1,7 +1,7 @@
 package org.amel.plare.member.service;
 
 import org.amel.plare.member.dao.MemberDao;
-import org.amel.plare.member.dao.MemberLoginVO;
+import org.amel.plare.member.domain.MemberLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class MemberService {
     // 테스트 함수 사용하지않음
     public int memberLogin(MemberLoginVO memberLogin) {
         
-        String encodedPassword = memberDao.findPasswordById(memberLogin.getId());
+        String encodedPassword = memberDao.findPasswordById(memberLogin.getAuthId());
         
         if(encodedPassword == passwordEncoder.encode(memberLogin.getPassword())) {
             
