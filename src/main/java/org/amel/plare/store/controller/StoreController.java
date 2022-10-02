@@ -26,6 +26,8 @@ public class StoreController {
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
     public List<StoreMenuVO> listStoreMenu() {
         
-        return storeMenuService.listStoreMenu();
+        List<StoreMenuVO> temp = storeMenuService.listStoreMenu();
+        
+        return temp;
     }
 }
