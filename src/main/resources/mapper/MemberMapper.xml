@@ -4,7 +4,7 @@
 	
 	<select id="findPasswordById" resultType="MemberLoginVO">
 		SELECT password
-		FROM plaredb.member
+		FROM plare.member
 		WHERE auth_id = #{authId};
 	</select>
 	

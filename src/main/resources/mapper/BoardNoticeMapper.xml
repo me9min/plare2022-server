@@ -4,7 +4,19 @@
 	
 	<select id="listBoardNotice" resultType="BoardNoticeVO">
 		SELECT id, views, writer_id, dateOfCreated, title, content
-		FROM plaredb.board_notice;
+		FROM plare.board_notice;
 	</select>
+	
+	<insert id="insertBoardNotice">
+		INSERT INTO plare.board_notice
+		(views, writer_id, dateOfCreated, title, content)
+		VALUES(0, 0, '', '', '');
+	</insert>
+	
+	<update id="updateBoardNotice">
+		UPDATE plare.board_notice
+		SET title=#{title}, content=#{content}, date_of_updated=#{dateOfUpdate}, ip_of_updated=#{ipOfUpdate}, member_id_of_updated=#{memberIdOfUpdated}
+		WHERE notice_id=#{noticeId};
+	</update>
 	
 </mapper>

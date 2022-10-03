@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class MemberVO {
     
+    private int memberId;
+    
     /** 웹 멤버 아이디 */
     private String authId;
     
