@@ -63,8 +63,7 @@ public class StoreMenuDao {
         StoreMenuPageVO currPage = new StoreMenuPageVO();
         int lowerLimit = (newPageId-1) * currPage.getItemsperpage();
         int upperLimit = newPageId * currPage.getItemsperpage();
-        ConditionalTwoInput temp = new ConditionalTwoInput(lowerLimit,upperLimit);
-        List<StoreMenuVO> newContent = sqlSession.selectList("storeMenu.selectPageList", temp);
+        List<StoreMenuVO> newContent = sqlSession.selectList("storeMenu.selectPageList", lowerLimit, upperLimit);
 
         currPage.setContent(newContent);
         prevPage.setNextPage(currPage);
