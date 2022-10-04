@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="storeMenu">
+	
+	<select id="selectList" resultType="StoreMenuVO">
+		SELECT id, group_id, type_id, price, name, flag, attribute_json, description
+		FROM store.store_menu;
+	</select>
+
+	<select id="selectPageList" resultType="StoreMenuVO">
+		SELECT id, group_id, type_id, price, name, flag, attribute_json, description
+		FROM store.store_menu WHERE id >= #{temp.x}  AND id < #{temp.y};
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO store_menu
+		(group_id, type_id, price, name, flag, attribute_json, description)
+		VALUES(#{groupId}, #{typeId}, #{price}, #{name}, #{flag}, #{attributeJson}, #{description});
+	</insert>
+	
+</mapper>
