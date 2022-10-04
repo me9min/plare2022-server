@@ -1,5 +1,7 @@
 package org.amel.plare.store.controller;
 
+import java.util.List;
+
 import org.amel.plare.store.domain.StoreMenuPageVO;
 import org.amel.plare.store.domain.StoreMenuVO;
 import org.amel.plare.store.service.StoreMenuService;
@@ -45,8 +47,19 @@ public class StoreController {
      * @return list of items in shop / 샵 내부 아이템 리스트
      */
     @RequestMapping(value = "/menu/{pageid}", method = RequestMethod.GET)
-    public StoreMenuPageVO listStoreMenuByPage(@PathVariable int pageid) {
+    public List<StoreMenuVO> listStoreMenuByPage(@PathVariable int pageid) {
         return storeMenuService.listStoreMenuByPage(pageid);
+    }
+
+    /**
+     * lists menu of store
+     * 샵 메뉴 리스트
+     * 
+     * @return list of items in shop / 샵 내부 아이템 리스트
+     */
+    @RequestMapping(value = "/menu/{pageid}/{noOfItems}", method = RequestMethod.GET)
+    public List<StoreMenuVO> changeNoOfDisplayedItems(@PathVariable int pageid, @PathVariable int noOfItems) {
+        return storeMenuService.changeNoOfDisplayedItems(pageid, noOfItems);
     }
 
 }

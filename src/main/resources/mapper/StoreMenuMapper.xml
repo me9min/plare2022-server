@@ -9,7 +9,7 @@
 
 	<select id="selectPageList" resultType="StoreMenuVO">
 		SELECT id, group_id, type_id, price, name, flag, attribute_json, description
-		FROM store.store_menu WHERE id >= #{temp.x}  AND id < #{temp.y};
+		FROM store.store_menu WHERE id &gt;= #{lowerLimit}  AND id &lt;= #{upperLimit};
 	</select>
 	
 	<insert id="insert">

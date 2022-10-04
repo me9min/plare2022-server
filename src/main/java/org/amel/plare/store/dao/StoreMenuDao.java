@@ -1,11 +1,11 @@
 package org.amel.plare.store.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.amel.plare.store.domain.StoreMenuPageVO;
 import org.amel.plare.store.domain.StoreMenuVO;
-import org.amel.plare.store.utils.ConditionalTwoInput;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,7 +33,7 @@ public class StoreMenuDao {
     @Autowired
     public StoreMenuDao(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
-        this.prevPage = new StoreMenuPageVO();
+        this.prevPage = new StoreMenuPageVO(new ArrayList<StoreMenuVO>(), 1, null, null, 5);
     }
 
     /** method to add item into the store menu
@@ -59,18 +59,42 @@ public class StoreMenuDao {
      * 스토어 내부 페이지 전부 리스팅
      * @return list of all items within store / 스토어 내부 모든 아이템
      */
-    public StoreMenuPageVO listStoreMenuByPage(int newPageId) {
-        StoreMenuPageVO currPage = new StoreMenuPageVO();
-        int lowerLimit = (newPageId-1) * currPage.getItemsperpage();
-        int upperLimit = newPageId * currPage.getItemsperpage();
-        List<StoreMenuVO> newContent = sqlSession.selectList("storeMenu.selectPageList", lowerLimit, upperLimit);
+    public List<StoreMenuVO> listStoreMenuByPage(int newPageId) {
+        
+        int lowerLimit = (newPageId-1) * prevPage.getItemsperpage()+1;
+        int upperLimit = newPageId * prevPage.getItemsperpage();
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("lowerLimit", lowerLimit);
+        map.put("upperLimit", upperLimit);
 
-        currPage.setContent(newContent);
-        prevPage.setNextPage(currPage);
-        currPage.setPrevPage(prevPage);
-        currPage.setPage(newPageId);
-        currPage.setItemsperpage(prevPage.getItemsperpage());
+        List<StoreMenuVO> newContent = sqlSession.selectList("storeMenu.selectPageList", map);
+        
+        StoreMenuPageVO currPage = new StoreMenuPageVO(newContent, newPageId, prevPage, null, prevPage.getItemsperpage());
+        this.prevPage.setNextPage(currPage);
+        this.prevPage = currPage;
 
-        return currPage;
+        return newContent;
+    }
+
+    public List<StoreMenuVO> changeNoOfDisplayedItems(int pageid, int noOfItems) {
+        if(noOfItems == prevPage.getItemsperpage()) return listStoreMenuByPage(pageid);
+        
+        int prevPageId = prevPage.getPage();
+        int prevPagelowerLimit = (prevPageId-1) * prevPage.getItemsperpage() + 1;
+        int upperLimit = prevPagelowerLimit + noOfItems - 1;
+
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("lowerLimit", prevPagelowerLimit);
+        map.put("upperLimit", upperLimit);
+
+        List<StoreMenuVO> newContent = sqlSession.selectList("storeMenu.selectPageList", map);
+
+        int newPageId = upperLimit/noOfItems;
+
+        StoreMenuPageVO currPage = new StoreMenuPageVO(newContent, newPageId, prevPage, null, noOfItems);
+        this.prevPage.setNextPage(currPage);
+        this.prevPage = currPage;
+
+        return newContent;
     }
 }

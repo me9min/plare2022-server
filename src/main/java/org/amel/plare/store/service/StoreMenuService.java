@@ -47,7 +47,11 @@ public class StoreMenuService {
         return storeMenuDao.listStoreMenu();
     }
 
-    public StoreMenuPageVO listStoreMenuByPage(int newPageId) {
+    public List<StoreMenuVO> listStoreMenuByPage(int newPageId) {
         return storeMenuDao.listStoreMenuByPage(newPageId);
+    }
+
+    public List<StoreMenuVO> changeNoOfDisplayedItems(int pageid, int noOfItems) {
+        return storeMenuDao.changeNoOfDisplayedItems(pageid, noOfItems);
     }
 }
