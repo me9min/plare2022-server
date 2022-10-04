@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 # plare2022
+=======
+<<<<<<< HEAD
+![image](https://user-images.githubusercontent.com/28896454/193284833-4b58a803-48b8-414e-9b97-a690a408b057.png)# plare2022
+=======
+# plare2022
+>>>>>>> 4150dea8e56dd4d16e2af4735578a9b7dc8013f9
+>>>>>>> tempstore
 
 ![PlareLogo.jpg (260×122)](https://amel.kr/assets/images/PlareLogo.jpg)
 
@@ -18,6 +26,26 @@
 
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+## 구현 기능
+
+### 기능 1
+
+
+
+### 기능 2
+
+
+
+### 기능 3
+
+
+
+### 기능 4
+=======
+>>>>>>> tempstore
 ## 서버 구성도
 
 ![image](https://user-images.githubusercontent.com/28896454/193286428-135d5d4b-1c7f-424f-843f-7c084a05c5bf.png)
@@ -62,6 +90,10 @@
 #### B기능 
 
 설명
+<<<<<<< HEAD
+=======
+>>>>>>> 4150dea8e56dd4d16e2af4735578a9b7dc8013f9
+>>>>>>> tempstore
 
 
 

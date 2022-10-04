@@ -43,7 +43,14 @@ public class StoreMenuService {
      * @return a List of all items in the Store_menu db
      */
     public List<StoreMenuVO> listStoreMenu() {
-        
         return storeMenuDao.listStoreMenu();
+    }
+
+    public List<StoreMenuVO> listStoreMenuByPage(int newPageId) {
+        return storeMenuDao.listStoreMenuByPage(newPageId);
+    }
+
+    public List<StoreMenuVO> changeNoOfDisplayedItems(int pageid, int noOfItems) {
+        return storeMenuDao.changeNoOfDisplayedItems(pageid, noOfItems);
     }
 }
