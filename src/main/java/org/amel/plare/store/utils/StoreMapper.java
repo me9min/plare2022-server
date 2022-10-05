@@ -9,6 +9,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface StoreMapper {
 
-    List<StoreMenuVO> selectPageList(@Param("lowerLimit") int lowerLimit, @Param("upperLimit") int upperLimit);
-    
+    List<StoreMenuVO> selectPageList(@Param("lowerLimit") String lowerLimit, @Param("upperLimit") String upperLimit, @Param("dbName") String dbName);
+
 }

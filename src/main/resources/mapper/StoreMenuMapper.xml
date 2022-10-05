@@ -9,7 +9,15 @@
 
 	<select id="selectPageList" resultType="StoreMenuVO">
 		SELECT id, group_id, type_id, price, name, flag, attribute_json, description
-		FROM store.store_menu WHERE id &gt;= #{lowerLimit}  AND id &lt;= #{upperLimit};
+		FROM ${dbName} WHERE id &gt;= ${lowerLimit}  AND id &lt;= ${upperLimit};
+	</select>
+
+	<select id="createCategoryTable" resultType="StoreMenuVO">
+		WITH TempCategoryList as
+		(
+			SELECT id, group_id, type_id, price, name, flag, attribute_json, description
+			FROM store.store_menu WHERE group_id = ${categoryName};
+		)
 	</select>
 	
 	<insert id="insert">

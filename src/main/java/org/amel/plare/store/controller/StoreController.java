@@ -39,24 +39,19 @@ public class StoreController {
     }
 
     /**
-     * lists menu of store
-     * 샵 메뉴 리스트
+     * changes no of items per page
+     * 페이지당 아이템 개수 변경 -> 페이지는 1로 초기화
      * 
      * @return list of items in shop / 샵 내부 아이템 리스트
      */
-    @RequestMapping(value = "/menu/{pageid}", method = RequestMethod.GET)
-    public List<StoreMenuVO> listStoreMenuByPage(@PathVariable int pageid) {
-        return storeMenuService.listStoreMenuByPage(pageid);
+    // @RequestMapping(value = "/menu/{pageid}/{noOfItems}", method = RequestMethod.GET)
+    // public List<StoreMenuVO> listStoreMenuByPage(@PathVariable int pageid, @PathVariable int noOfItems) {
+    //     return storeMenuService.listStoreMenuByPage(pageid, noOfItems);
+    // }
+
+    @RequestMapping(value = "/menu/{categoryName}/{pageid}/{noOfItems}", method = RequestMethod.GET)
+    public List<StoreMenuVO> categoryView(@PathVariable String categoryName, @PathVariable int pageid, @PathVariable int noOfItems){
+        return storeMenuService.categoryView(categoryName, pageid, noOfItems);
     }
 
-    /**
-     * lists menu of store
-     * 샵 메뉴 리스트
-     * 
-     * @return list of items in shop / 샵 내부 아이템 리스트
-     */
-    @RequestMapping(value = "/menu/{pageid}/{noOfItems}", method = RequestMethod.GET)
-    public List<StoreMenuVO> changeNoOfDisplayedItems(@PathVariable int pageid, @PathVariable int noOfItems) {
-        return storeMenuService.changeNoOfDisplayedItems(pageid, noOfItems);
-    }
 }

@@ -1,10 +1,8 @@
 package org.amel.plare.store.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.amel.plare.store.domain.StoreMenuPageVO;
 import org.amel.plare.store.domain.StoreMenuVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,9 @@ public class StoreMenuDao {
     final
     SqlSession sqlSession;
 
-    private StoreMenuPageVO prevPage;
+    private int prevSize = 5;
+    private String dbName = "store.store_menu";
+    private String categoryName = "ALL";
 
     /** constructor class for Store DAO
      *  Store DAO 의 생성자
@@ -31,7 +31,6 @@ public class StoreMenuDao {
     @Autowired
     public StoreMenuDao(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
-        this.prevPage = new StoreMenuPageVO(new ArrayList<StoreMenuVO>(), 1, null, null, 5);
     }
 
     /** method to add item into the store menu
@@ -49,50 +48,56 @@ public class StoreMenuDao {
      * @return list of all items within store / 스토어 내부 모든 아이템
      */
     public List<StoreMenuVO> listStoreMenu() {
-        
         return sqlSession.selectList("storeMenu.selectList");
     }
+
 
     /** lists all items within Store, wrt paging
      * 스토어 내부 페이지 전부 리스팅
      * @return list of all items within store / 스토어 내부 모든 아이템
      */
-    public List<StoreMenuVO> listStoreMenuByPage(int newPageId) {
-        
-        int lowerLimit = (newPageId-1) * prevPage.getItemsperpage()+1;
-        int upperLimit = newPageId * prevPage.getItemsperpage();
-        HashMap<String, Integer> map = new HashMap<>();
+    private List<StoreMenuVO> changePage(int newPageId, String dbName) {
+        String lowerLimit = String.valueOf((newPageId-1) * prevSize+1);
+        String upperLimit = String.valueOf(newPageId * prevSize);
+        HashMap<String, String> map = new HashMap<>();
         map.put("lowerLimit", lowerLimit);
         map.put("upperLimit", upperLimit);
+        map.put("dbName", dbName);
 
         List<StoreMenuVO> newContent = sqlSession.selectList("storeMenu.selectPageList", map);
-        
-        StoreMenuPageVO currPage = new StoreMenuPageVO(newContent, newPageId, prevPage, null, prevPage.getItemsperpage());
-        this.prevPage.setNextPage(currPage);
-        this.prevPage = currPage;
 
         return newContent;
     }
 
-    public List<StoreMenuVO> changeNoOfDisplayedItems(int pageid, int noOfItems) {
-        if(noOfItems == prevPage.getItemsperpage()) return listStoreMenuByPage(pageid);
-        
-        int prevPageId = prevPage.getPage();
-        int prevPagelowerLimit = (prevPageId-1) * prevPage.getItemsperpage() + 1;
-        int upperLimit = prevPagelowerLimit + noOfItems - 1;
+    private List<StoreMenuVO> listStoreMenuByPage(int pageid, int noOfItems, String dbName) {
+        if(noOfItems == prevSize) return changePage(pageid, dbName);
 
-        HashMap<String, Integer> map = new HashMap<>();
+        this.prevSize = noOfItems;
+
+        String prevPagelowerLimit = String.valueOf(1);
+        String upperLimit = String.valueOf((noOfItems));
+
+        HashMap<String, String> map = new HashMap<>();
         map.put("lowerLimit", prevPagelowerLimit);
         map.put("upperLimit", upperLimit);
+        map.put("dbName", dbName);
 
         List<StoreMenuVO> newContent = sqlSession.selectList("storeMenu.selectPageList", map);
 
-        int newPageId = upperLimit/noOfItems;
-
-        StoreMenuPageVO currPage = new StoreMenuPageVO(newContent, newPageId, prevPage, null, noOfItems);
-        this.prevPage.setNextPage(currPage);
-        this.prevPage = currPage;
-
         return newContent;
+    }
+
+    public List<StoreMenuVO> categoryView(String categoryName, int pageid, int noOfItems) {
+        if(!categoryName.equals(this.categoryName)){
+            if(categoryName != "ALL") {
+                sqlSession.selectList("storeMenu.createCategoryTable", categoryName);
+                dbName = "TempCategoryList";
+            } else {
+                dbName = "store.store_menu";
+            }
+        }
+
+        this.categoryName = categoryName;
+        return listStoreMenuByPage(pageid, noOfItems, dbName);
     }
 }
