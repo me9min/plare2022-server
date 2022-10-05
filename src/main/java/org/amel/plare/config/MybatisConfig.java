@@ -19,6 +19,7 @@ public class MybatisConfig {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		Properties mybatisProperties = new Properties();
 		mybatisProperties.setProperty("mapUnderscoreToCamelCase", "true");
+		
 		sqlSessionFactoryBean.setConfigurationProperties(mybatisProperties);
 		sqlSessionFactoryBean.setVfs(SpringBootVFS.class);
 		sqlSessionFactoryBean.setDataSource(dataSource);
