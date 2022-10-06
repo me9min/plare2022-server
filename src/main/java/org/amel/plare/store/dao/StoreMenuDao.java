@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.amel.plare.store.domain.StoreMenuVO;
+import org.amel.plare.store.utils.GroupTypes;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,7 @@ public class StoreMenuDao {
 
     private int prevSize = 5;
     private String dbName = "store.store_menu";
-    private String categoryName = "ALL";
+    private GroupTypes categoryName = GroupTypes.ALL;
 
     /** constructor class for Store DAO
      *  Store DAO 의 생성자
@@ -52,7 +53,6 @@ public class StoreMenuDao {
         return sqlSession.selectList("storeMenu.selectList");
     }
 
-
     /** lists all items within Store, wrt paging
      * 스토어 내부 페이지 전부 리스팅
      * @return list of all items within store / 스토어 내부 모든 아이템
@@ -60,14 +60,7 @@ public class StoreMenuDao {
     private List<StoreMenuVO> changePage(int newPageId, String dbName) {
         String lowerLimit = String.valueOf((newPageId-1) * prevSize+1);
         String upperLimit = String.valueOf(newPageId * prevSize);
-        HashMap<String, String> map = new HashMap<>();
-        map.put("lowerLimit", lowerLimit);
-        map.put("upperLimit", upperLimit);
-        map.put("dbName", dbName);
-
-        List<StoreMenuVO> newContent = sqlSession.selectList("storeMenu.selectPageList", map);
-
-        return newContent;
+        return getStoreMenuVOS(dbName, lowerLimit, upperLimit);
     }
 
     private List<StoreMenuVO> listStoreMenuByPage(int pageid, int noOfItems, String dbName) {
@@ -78,6 +71,10 @@ public class StoreMenuDao {
         String prevPagelowerLimit = String.valueOf(1);
         String upperLimit = String.valueOf((noOfItems));
 
+        return getStoreMenuVOS(dbName, prevPagelowerLimit, upperLimit);
+    }
+
+    private List<StoreMenuVO> getStoreMenuVOS(String dbName, String prevPagelowerLimit, String upperLimit) {
         HashMap<String, String> map = new HashMap<>();
         map.put("lowerLimit", prevPagelowerLimit);
         map.put("upperLimit", upperLimit);
@@ -88,13 +85,13 @@ public class StoreMenuDao {
         return newContent;
     }
 
-    public List<StoreMenuVO> categoryView(String categoryName, int pageid, int noOfItems) {
+    public List<StoreMenuVO> categoryView(GroupTypes categoryName, int pageid, int noOfItems) {
+        System.out.println(categoryName);
         if(!categoryName.equals(this.categoryName)){
-            if(categoryName != "ALL") {
-                sqlSession.insert("TempTableCreate"); //ACCESS DENIED TO STORE -> GIVE PRIVILEGE FFS
-                sqlSession.insert("TempTableInit", categoryName);
-                // sqlSession.selectList("storeMenu.createCategoryTable", categoryName);
-                dbName = "TempCategoryList";
+            if(!categoryName.equals(GroupTypes.ALL)) {
+                sqlSession.insert("TempTableCreate", categoryName.getValue());
+
+                dbName = "plare.TempCategoryList";
             } else {
                 dbName = "store.store_menu";
             }

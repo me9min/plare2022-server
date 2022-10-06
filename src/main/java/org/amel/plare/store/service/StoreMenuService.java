@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.amel.plare.store.dao.StoreMenuDao;
 import org.amel.plare.store.domain.StoreMenuVO;
+import org.amel.plare.store.utils.GroupTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,6 @@ public class StoreMenuService {
     }
 
     public List<StoreMenuVO> categoryView(String categoryName, int pageid, int noOfItems) {
-        return storeMenuDao.categoryView(categoryName, pageid, noOfItems);
+        return storeMenuDao.categoryView(GroupTypes.valueOf(Integer.valueOf(categoryName)), pageid, noOfItems);
     }
 }
