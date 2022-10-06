@@ -90,7 +90,9 @@ public class StoreMenuDao {
     public List<StoreMenuVO> categoryView(String categoryName, int pageid, int noOfItems) {
         if(!categoryName.equals(this.categoryName)){
             if(categoryName != "ALL") {
-                sqlSession.selectList("storeMenu.createCategoryTable", categoryName);
+                sqlSession.insert("TempTableCreate"); //ACCESS DENIED TO STORE -> GIVE PRIVILEGE FFS
+                sqlSession.insert("TempTableInit", categoryName);
+                // sqlSession.selectList("storeMenu.createCategoryTable", categoryName);
                 dbName = "TempCategoryList";
             } else {
                 dbName = "store.store_menu";
