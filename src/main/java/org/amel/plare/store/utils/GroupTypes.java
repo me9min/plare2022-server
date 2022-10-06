@@ -11,6 +11,7 @@ public enum GroupTypes {
 
     private int value;
     private static Map<Integer, GroupTypes> securityMap = new HashMap<>();
+    private static Map<Integer, String> DBMap = new HashMap<>();
 
     private GroupTypes(int value) {
         this.value = value;
@@ -19,11 +20,17 @@ public enum GroupTypes {
     static {
         for (GroupTypes pageType : GroupTypes.values()) {
             securityMap.put(pageType.value, pageType);
+            if(pageType.value == 1) { DBMap.put( pageType.value, "store.store_menu");}
+            else {DBMap.put ( pageType.value, "plare.TempCategoryList");}
         }
     }
 
     public static GroupTypes valueOf(int unparsedPage) {
         return securityMap.get(unparsedPage);
+    }
+
+    public static String DBvalueOf(int unparsedPage) {
+        return DBMap.get(unparsedPage);
     }
 
     public int getValue() {

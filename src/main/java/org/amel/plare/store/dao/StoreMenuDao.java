@@ -75,7 +75,7 @@ public class StoreMenuDao {
     }
 
     private List<StoreMenuVO> getStoreMenuVOS(String dbName, String prevPagelowerLimit, String upperLimit) {
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>(); //SQL insert 도움 필요 -> Map 에서 xml 이 런타임 타입 볼 수 있는지 모름
         map.put("lowerLimit", prevPagelowerLimit);
         map.put("upperLimit", upperLimit);
         map.put("dbName", dbName);
@@ -90,11 +90,9 @@ public class StoreMenuDao {
         if(!categoryName.equals(this.categoryName)){
             if(!categoryName.equals(GroupTypes.ALL)) {
                 sqlSession.insert("TempTableCreate", categoryName.getValue());
-
-                dbName = "plare.TempCategoryList";
-            } else {
-                dbName = "store.store_menu";
             }
+
+            dbName = GroupTypes.DBvalueOf(categoryName.getValue());
         }
 
         this.categoryName = categoryName;
