@@ -6,6 +6,19 @@
 		SELECT id, group_id, type_id, price, name, flag, attribute_json, description
 		FROM store.store_menu;
 	</select>
+
+	<select id="selectPageList" resultType="StoreMenuVO">
+		SELECT id, group_id, type_id, price, name, flag, attribute_json, description
+		FROM ${dbName} WHERE id &gt;= ${lowerLimit}  AND id &lt;= ${upperLimit};
+	</select>
+
+	<insert id = "TempTableCreate">
+		CREATE TEMPORARY TABLE TempCategoryList
+	</insert>
+
+	<insert id ="TempTableInit">
+		INSERT INTO TempCategoryList(SELECT * FROM store.store_menu WHERE group_id = ${categoryName})
+	</insert>
 	
 	<insert id="insert">
 		INSERT INTO store_menu

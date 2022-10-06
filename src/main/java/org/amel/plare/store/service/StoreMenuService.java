@@ -1,10 +1,8 @@
 package org.amel.plare.store.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.amel.plare.store.dao.StoreMenuDao;
-import org.amel.plare.store.domain.StoreMenuPageVO;
 import org.amel.plare.store.domain.StoreMenuVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,23 +46,7 @@ public class StoreMenuService {
         return storeMenuDao.listStoreMenu();
     }
 
-    public StoreMenuPageVO listStoreMenuByPage(StoreMenuPageVO page, int newPageId) {
-
-//        for(int i = (newPageId-1) * page.getItemsperpage(); i<= page.getItemsperpage()* (newPageId) ; i++){
-//
-//        }
-        List<StoreMenuVO> newPageList = this.listStoreMenu().stream().filter(itemObj ->
-                itemObj.getId() <= page.getItemsperpage() * (newPageId)
-                && itemObj.getId() > page.getItemsperpage()* (newPageId-1)).collect(Collectors.toList());
-
-        StoreMenuPageVO newPage = new StoreMenuPageVO(page,newPageId, newPageList);
-
-        return newPage;
-    }
-
-    public List<StoreMenuVO> listStoreMenuByPageMock(int newPageId) {
-        return this.listStoreMenu().stream().filter(itemObj ->
-                itemObj.getId() <= 5 * (newPageId)
-                        && itemObj.getId() > 5 * (newPageId-1)).collect(Collectors.toList());
+    public List<StoreMenuVO> categoryView(String categoryName, int pageid, int noOfItems) {
+        return storeMenuDao.categoryView(categoryName, pageid, noOfItems);
     }
 }
