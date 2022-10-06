@@ -5,7 +5,7 @@ import org.amel.plare.vo.GamePlayerVO;
 
 public interface RankService {
 	
-	public List<GamePlayerVO> selectCredits(int page);
+	public List<GamePlayerVO> selectCredits(int limitStart, int page);
 	
 	public int pageCount();
 	

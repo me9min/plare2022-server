@@ -16,10 +16,10 @@ public class RankServiceImpl implements RankService{
 	private RankMapper rankMapper;
 	
 	@Override
-	public List<GamePlayerVO> selectCredits(int page){
+	public List<GamePlayerVO> selectCredits(int limitStart, int page){
 		
 		
-		List<GamePlayerVO> gameList = rankMapper.selectCredits(page);
+		List<GamePlayerVO> gameList = rankMapper.selectCredits(limitStart, page);
 		
 		return gameList;
 	}

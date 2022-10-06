@@ -6,12 +6,12 @@
 
 <mapper namespace="org.amel.plare.mapper.RankMapper">
 	<select id="selectCredits" resultType="org.amel.plare.vo.GamePlayerVO" parameterType="int">
-		select * from store_players order by credits desc limit 0, #{page}
+		select * from store.store_players order by credits desc limit  #{limitStart}, #{page} 
 	</select>
 	
 	
 	<select id="pageCount" resultType="int">
-	select count(id) from store_players
+	select count(id) from store.store_players
 	</select>
 	
 </mapper>
