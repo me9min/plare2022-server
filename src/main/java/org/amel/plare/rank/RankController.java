@@ -23,9 +23,13 @@ public class RankController {
 	@GetMapping("/list")
 	public ModelAndView List(HttpServletRequest request, HttpServletResponse response, Model m) {
 		
+		int page = 5;
 		
+		if(request.getParameter("paging_count") != null) {
+			page = Integer.parseInt(request.getParameter("paging_count"));
+		}
 		
-		java.util.List<GamePlayerVO> gameList = rankService.selectCredits();
+		java.util.List<GamePlayerVO> gameList = rankService.selectCredits(page);
 		ModelAndView rankList = new ModelAndView();
 		rankList.addObject("gameList", gameList);
 		rankList.setViewName("/ranking/list");
