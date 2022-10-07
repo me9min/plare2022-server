@@ -1,5 +1,6 @@
 package org.amel.plare.store.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.amel.plare.store.dao.StoreMenuDao;
@@ -47,7 +48,23 @@ public class StoreMenuService {
         return storeMenuDao.listStoreMenu();
     }
 
-    public List<StoreMenuVO> categoryView(String categoryName, int pageid, int noOfItems) {
-        return storeMenuDao.categoryView(GroupTypes.valueOf(Integer.valueOf(categoryName)), pageid, noOfItems);
+     /** provides a json file containing search_items based on URL, paged.
+     * 검색된 아이템을 URL 기반으로 리턴
+     * @param categoryName 카테고리 이름 -> 0(전부) 1(기본아이템), 2(이벤트아이템) -> 추후 변경 가능
+     * @param pageid 가고싶은 페이지 번호
+     * @param noOfItems 페이지당 아이템 개수
+     * 
+     * @return list of items in shop / 샵 내부 아이템 리스트
+     */
+    public List<StoreMenuVO> ItemView(String categoryName, int pageid, int noOfItems) {
+        try{
+            return storeMenuDao.ItemView(GroupTypes.valueOf(Integer.valueOf(categoryName)), pageid, noOfItems);
+        } catch (IllegalArgumentException e) {
+            List<StoreMenuVO> result = new ArrayList<>();
+            StoreMenuVO INVALID = new StoreMenuVO();
+            INVALID.setDescription(e.getLocalizedMessage());
+            result.add(INVALID);
+            return result;
+        }
     }
 }

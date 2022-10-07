@@ -38,20 +38,18 @@ public class StoreController {
         return "insert된 엔티티수: " + Integer.toString(storeMenuService.insertStoreMenu(storeMenu));
     }
 
-    /**
-     * changes no of items per page
-     * 페이지당 아이템 개수 변경 -> 페이지는 1로 초기화
+    /** provides a json file containing search_items based on URL, paged.
+     * 검색된 아이템을 URL 기반으로 리턴
+     * @param categoryName 카테고리 이름 -> 0(전부) 1(기본아이템), 2(이벤트아이템) -> 추후 변경 가능
+     * @param pageid 가고싶은 페이지 번호
+     * @param noOfItems 페이지당 아이템 개수
      * 
      * @return list of items in shop / 샵 내부 아이템 리스트
      */
-    // @RequestMapping(value = "/menu/{pageid}/{noOfItems}", method = RequestMethod.GET)
-    // public List<StoreMenuVO> listStoreMenuByPage(@PathVariable int pageid, @PathVariable int noOfItems) {
-    //     return storeMenuService.listStoreMenuByPage(pageid, noOfItems);
-    // }
-
     @RequestMapping(value = "/menu/{categoryName}/{pageid}/{noOfItems}", method = RequestMethod.GET)
-    public List<StoreMenuVO> categoryView(@PathVariable String categoryName, @PathVariable int pageid, @PathVariable int noOfItems){
-        return storeMenuService.categoryView(categoryName, pageid, noOfItems);
+    public List<StoreMenuVO> ItemView(@PathVariable String categoryName, @PathVariable int pageid, @PathVariable int noOfItems){
+        return storeMenuService.ItemView(categoryName, pageid, noOfItems);
     }
+
 
 }

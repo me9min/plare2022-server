@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class StoreMenuVO {
 
+
     /** id of item within table
      *  해당 아이템의  sql 테이블 내부 id
      */
@@ -46,5 +47,6 @@ public class StoreMenuVO {
     /** item description
      * 아이템 설명
      */
-    private String description;
+    private String description;  
+
 }
