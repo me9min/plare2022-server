@@ -7,10 +7,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class QnaVO extends BaseEntitiy {
-	private int board_question_id;
+public class AnswerVO extends BaseEntitiy {
+	private int boardQuestionId;
 	
-	private int member_id;
+	private int memberId;
+	
+	private int views;
 	
 	private String title;
 	

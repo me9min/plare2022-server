@@ -8,15 +8,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BaseEntitiy {
-	private Date date_of_created;
+	private Date dateOfCreated;
 	
-	private Date date_of_updated;
+	private Date dateOfUpdated;
 	
-	private String ip_of_created;
+	private String ipOfCreated;
 	
-	private String ip_of_updated;
+	private String ipOfUpdated;
 	
-	private int member_id_of_updated;
+	private int memberIdOfUpdated;
 	
 	private BoardStatus status;
 }

@@ -3,7 +3,7 @@ package org.amel.plare.qna.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.amel.plare.qna.TestHelper;
-import org.amel.plare.qna.domain.QnaVO;
+import org.amel.plare.qna.domain.QuestionVO;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -29,8 +29,8 @@ public class QnaServiceTest {
 	@Test
 	@DisplayName("list qna")
 	public void listQna() throws Exception {
-		ResponseEntity<QnaVO[]> responseEntity = restTemplate.exchange("/qna/list", HttpMethod.GET,
-				testHelper.getRequestHeaders(), QnaVO[].class);
+		ResponseEntity<QuestionVO[]> responseEntity = restTemplate.exchange("/qna/list", HttpMethod.GET,
+				testHelper.getRequestHeaders(), QuestionVO[].class);
 
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 		assertEquals(MediaType.APPLICATION_JSON_UTF8, responseEntity.getHeaders().getContentType());

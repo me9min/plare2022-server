@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QuestionMapper">
+	
+	<select id="listQuestion" resultType="QuestionVO">
+		SELECT	board_question_id
+		,		member_id
+		,		title
+		,		content
+		,		views
+		,		date_of_created
+		,		ip_of_created
+		,		date_of_updated
+		,		member_id_of_updated
+		,		ip_of_updated
+		,		status
+		FROM	plare.board_question
+		where 	status = 'PUBLIC'
+	</select>
+	<select id="getQuestion" resultType="QuestionVO">
+		SELECT	board_question_id
+		,		member_id
+		,		title
+		,		content
+		,		views
+		,		date_of_created
+		,		ip_of_created
+		,		date_of_updated
+		,		member_id_of_updated
+		,		ip_of_updated
+		,		status
+		FROM	plare.board_question
+		where 	status = 'PUBLIC'
+		and 	board_question_id=#{boardQuestionId}
+	</select>
+	<insert id="insertQuestion" >
+		INSERT INTO plare.board_question ( 
+			member_id,		title,				content,				views,			date_of_created,
+			ip_of_created,	date_of_updated,	member_id_of_updated,	ip_of_updated,	status
+		) VALUES (
+			#{memberId},	#{title},			#{content},				0,				now(),
+			#{ipOfCreated},	now(),				#{memberIdOfUpdated},	#{ipOfUpdated},	'PUBLIC'
+		);
+	</insert>
+	<update id="updateQuestion" >
+		UPDATE	plare.board_question
+		SET		title=#{tittle}
+		,		content=#{content}
+		,		date_of_updated=NOW()
+		,		member_id_of_updated=#{memberId}
+		,		ip_of_updated=#{ipOfUpdated}	
+		WHERE	board_question_id=#{boardQuestionId};
+		AND 	member_id=#{memberId}
+		AND 	status='PUBLIC'
+	</update>
+	<update id="deleteQuestion" >
+		UPDATE	plare.board_question
+		SET		status='PRIVATE'
+		,		ip_of_updated=#{ipOfUpdated}	
+		WHERE	board_question_id=#{boardQuestionId}
+		AND 	member_id=#{memberId}
+		AND 	status='PUBLIC'
+	</update>
+	
+</mapper>
