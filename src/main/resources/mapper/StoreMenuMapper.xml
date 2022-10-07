@@ -8,7 +8,7 @@
 	</select>
 	
 	<insert id="insertStoreMenu">
-		INSERT INTO store_menu
+		INSERT INTO store.store_menu
 		(group_id, type_id, price, name, flag, attribute_json, description)
 		VALUES(#{groupId}, #{typeId}, #{price}, #{name}, #{flag}, #{attributeJson}, #{description});
 	</insert>

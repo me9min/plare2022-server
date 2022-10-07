@@ -17,4 +17,14 @@ public class BoardNoticeDao {
         
         return sqlSession.selectList("BoardNoticeMapper.listBoardNotice");
     }
+
+    public int insertBoardNotice() {
+        
+        return sqlSession.insert("BoardNoticeMapper.insertBoardNotice");
+    }
+
+    public int updateBoardNotice() {
+        
+        return sqlSession.update("BoardNoticeMapper.updateBoardNotice");
+    }
 }
