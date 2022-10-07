@@ -5,12 +5,12 @@ import java.util.List;
 import org.amel.plare.board.notice.domain.BoardNoticeVO;
 import org.amel.plare.board.notice.service.BoardNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/board")
+@RestController
+@RequestMapping(value = "/board")
 public class BoardNoticeController {
     
     @Autowired

@@ -3,31 +3,39 @@
 <mapper namespace="BoardNoticeMapper">
 	
 	<select id="listBoardNotice" resultType="BoardNoticeVO">
-		SELECT `notice_id`,
-		`member_id`,
-		`title`,
-		`content`,
-		`views`,
-		`date_of_created`,
-		`ip_of_created`,
-		`date_of_updated`,
-		`member_id_of_updated`,
-		`ip_of_updated`,
-		`status`
-		FROM `board_notice`
-		WHERE status='PUBLIC';
+		SELECT notice_id
+		,		member_id
+		,		title
+		,		content
+		,		views
+		,		date_of_created
+		,		ip_of_created
+		,		date_of_updated
+		,		member_id_of_updated
+		,		ip_of_updated
+		,		status
+		FROM	board_notice
+		WHERE	status='PUBLIC';
 	</select>
 	
 	<insert id="insertBoardNotice">
-		INSERT INTO board_notice
-		(views, writer_id, date_of_created, title, content)
-		VALUES(0, #{writerId}, #{dateOfCreated}, #{title}, #{content});
+		INSERT INTO board_notice (
+			views,		riter_id,		date_of_created,
+			title,		content
+		) VALUES (
+			0,			#{writerId},	#{dateOfCreat ed},
+			#{title},	#{content}
+		);
 	</insert>
 	
 	<update id="updateBoardNotice">
 		UPDATE board_notice
-		SET title=#{title}, content=#{content}, date_of_updated=#{dateOfUpdate}, ip_of_updated=#{ipOfUpdate}, member_id_of_updated=#{memberIdOfUpdated}
-		WHERE notice_id=#{noticeId};
+		SET		title=#{title},
+		,		content=#{content}
+		,		date_of_updated=#{dateOfUpdate}
+		,		ip_of_updated=#{ipOfUpdate}
+		,		member_id_of_updated=#{memberIdOfUpdated}
+		WHERE	notice_id=#{noticeId};
 	</update>
 	
 </mapper>
