@@ -17,10 +17,10 @@ public class BoardNoticeDao {
     
     public List<BoardNoticeVO> listBoardNotice() {
         
-        BoardNoticeVO boardNotice = null;
-        boardNotice.setStatus(BoardStatus.PUBLIC);
+        //BoardNoticeVO boardNotice = null;
+        //boardNotice.setStatus(BoardStatus.PUBLIC);
         
-        return sqlSession.selectList("BoardNoticeMapper.listBoardNotice", boardNotice);
+        return sqlSession.selectList("BoardNoticeMapper.listBoardNoticeAll");
     }
 
     public int insertBoardNotice(@RequestBody BoardNoticeVO boardNotice) {
