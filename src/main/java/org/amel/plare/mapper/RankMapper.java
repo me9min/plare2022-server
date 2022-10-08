@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface RankMapper {
- List<GamePlayerVO> selectCredits(int limitStart, int page);
- int pageCount();
+	List<GamePlayerVO> selectCredits(int limitStart, int page);
+
+	int pageCount();
 }
