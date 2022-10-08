@@ -1,9 +1,6 @@
 package org.amel.plare.rank.domain;
 
 import lombok.Data;
-/** 게임 내부 플레이어 클래스
- *  player case for in-game
- */
 @Data
 public class GamePlayerVO {
 
