@@ -21,11 +21,11 @@ public class BoardNoticeVO {
     
     private Date dateOfCreated;
     
-    private Date ipOfCreated;
+    private String ipOfCreated;
     
     private Date dateOfUpdated;
     
-    private Date ipOfUpdated;
+    private String ipOfUpdated;
     
     private int memberIdOfUpdated;
     
