@@ -2,7 +2,6 @@ package org.amel.plare.board.notice.dao;
 
 import java.util.List;
 
-import org.amel.plare.BoardStatus;
 import org.amel.plare.board.notice.domain.BoardNoticeVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +14,9 @@ public class BoardNoticeDao {
     @Autowired
     SqlSession sqlSession;
     
-    public List<BoardNoticeVO> listBoardNotice() {
+    public List<BoardNoticeVO> listBoardNotice(String status) {
         
-        //BoardNoticeVO boardNotice = null;
-        //boardNotice.setStatus(BoardStatus.PUBLIC);
-        
-        return sqlSession.selectList("BoardNoticeMapper.listBoardNoticeAll");
+        return sqlSession.selectList("BoardNoticeMapper.listBoardNotice", status);
     }
 
     public int insertBoardNotice(@RequestBody BoardNoticeVO boardNotice) {

@@ -2,22 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardNoticeMapper">
 	
-	<select id="listBoardNoticeAll" resultType="BoardNoticeVO">
-		SELECT	notice_id
-		,		member_id
-		,		title
-		,		content
-		,		views
-		,		date_of_created
-		,		ip_of_created
-		,		date_of_updated
-		,		ip_of_updated
-		,		member_id_of_updated
-		,		status
-		FROM	board_notice;
-	</select>
-	
-	<select id="listBoardNotice" resultType="BoardNoticeVO">
+	<select id="listBoardNotice" parameterType="String" resultType="BoardNoticeVO">
 		SELECT	notice_id
 		,		member_id
 		,		title
@@ -50,8 +35,9 @@
 		SET		title=#{title}
 		,		content=#{content}
 		,		date_of_updated=now()
-		,		ip_of_updated=#{ipOfUpdate}
-		,		member_id_of_updated=#{memberId}
+		,		ip_of_updated=#{ipOfUpdated}
+		,		member_id_of_updated=#{memberIdOfUpdated}
+		,		status=#{status}
 		WHERE	notice_id=#{noticeId};
 	</update>
 	

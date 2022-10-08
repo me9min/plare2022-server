@@ -16,7 +16,7 @@ public class BoardNoticeService {
     
     public List<BoardNoticeVO> listBoardNotice() {
         
-        return boardNoticeDao.listBoardNotice();
+        return boardNoticeDao.listBoardNotice("PUBLIC");
     }
     
     public int insertBoardNotice(@RequestBody BoardNoticeVO boardNotice) {
