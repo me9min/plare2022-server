@@ -3,7 +3,7 @@ package org.amel.plare.rank;
 import java.util.List;
 
 import org.amel.plare.mapper.RankMapper;
-import org.amel.plare.rank.domain.GamePlayerVO;
+import org.amel.plare.vo.GamePlayerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
