@@ -41,4 +41,10 @@
 		WHERE	notice_id=#{noticeId};
 	</update>
 	
+	<update id="updateBoardNoticeStatus">
+		UPDATE	board_notice
+		SET		status=#{status}
+		WHERE	notice_id=#{noticeId};
+	</update>
+	
 </mapper>

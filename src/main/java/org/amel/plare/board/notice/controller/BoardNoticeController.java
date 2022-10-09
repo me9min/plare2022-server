@@ -34,4 +34,10 @@ public class BoardNoticeController {
         
         return "update된 엔티티수: " + Integer.toString(boardNoticeService.updateBoardNotice(boardNotice));
     }
+    
+    @RequestMapping(value = "/notice", method = RequestMethod.PUT)
+    public String updateBoardNoticeStatus(@RequestBody BoardNoticeVO boardNotice) {
+        
+        return "update된 status수: " + Integer.toString(boardNoticeService.updateBoardNoticeStatus(boardNotice));
+    }
 }

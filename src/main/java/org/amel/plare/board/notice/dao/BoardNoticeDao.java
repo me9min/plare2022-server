@@ -19,13 +19,18 @@ public class BoardNoticeDao {
         return sqlSession.selectList("BoardNoticeMapper.listBoardNotice", status);
     }
 
-    public int insertBoardNotice(@RequestBody BoardNoticeVO boardNotice) {
+    public int insertBoardNotice(BoardNoticeVO boardNotice) {
         
         return sqlSession.insert("BoardNoticeMapper.insertBoardNotice", boardNotice);
     }
 
-    public int updateBoardNotice(@RequestBody BoardNoticeVO boardNotice) {
+    public int updateBoardNotice(BoardNoticeVO boardNotice) {
         
         return sqlSession.update("BoardNoticeMapper.updateBoardNotice", boardNotice);
+    }
+    
+    public int updateBoardNoticeStatus(BoardNoticeVO boardNotice) {
+        
+        return sqlSession.update("BoardNoticeMapper.updateBoardNoticeStatus", boardNotice);
     }
 }

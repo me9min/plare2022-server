@@ -19,7 +19,7 @@ public class BoardNoticeService {
         return boardNoticeDao.listBoardNotice("PUBLIC");
     }
     
-    public int insertBoardNotice(@RequestBody BoardNoticeVO boardNotice) {
+    public int insertBoardNotice(BoardNoticeVO boardNotice) {
         
         boardNotice.setIpOfCreated("127.0.0.1");
         boardNotice.setIpOfUpdated("127.0.0.1");
@@ -27,10 +27,15 @@ public class BoardNoticeService {
         return boardNoticeDao.insertBoardNotice(boardNotice);
     }
     
-    public int updateBoardNotice(@RequestBody BoardNoticeVO boardNotice) {
+    public int updateBoardNotice(BoardNoticeVO boardNotice) {
         
         boardNotice.setIpOfUpdated("127.0.0.1");
         
         return boardNoticeDao.updateBoardNotice(boardNotice);
+    }
+    
+    public int updateBoardNoticeStatus(BoardNoticeVO boardNotice) {
+        
+        return boardNoticeDao.updateBoardNoticeStatus(boardNotice);
     }
 }
