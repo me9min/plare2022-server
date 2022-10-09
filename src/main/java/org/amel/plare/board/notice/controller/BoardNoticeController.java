@@ -1,13 +1,14 @@
 package org.amel.plare.board.notice.controller;
 
-import java.util.List;
-
+import org.amel.plare.BoardStatus;
 import org.amel.plare.board.notice.domain.BoardNoticeVO;
+import org.amel.plare.board.notice.domain.ListBoardNoticeVO;
 import org.amel.plare.board.notice.service.BoardNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,9 +19,9 @@ public class BoardNoticeController {
     BoardNoticeService boardNoticeService;
     
     @RequestMapping(value = "/notice", method = RequestMethod.GET)
-    public List<BoardNoticeVO> listBoardNotice() {
+    public ListBoardNoticeVO listBoardNotice(@RequestParam BoardStatus stat, int max,int p) {
         
-        return boardNoticeService.listBoardNotice();
+        return boardNoticeService.listBoardNotice(stat, max, p);
     }
     
     @RequestMapping(value = "/notice", method = RequestMethod.POST)

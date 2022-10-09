@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardNoticeMapper">
 	
-	<select id="listBoardNotice" parameterType="String" resultType="BoardNoticeVO">
+	<select id="listBoardNotice" resultType="BoardNoticeVO">
 		SELECT	notice_id
 		,		member_id
 		,		title
@@ -15,7 +15,8 @@
 		,		member_id_of_updated
 		,		status
 		FROM	board_notice
-		WHERE	status=#{status};
+		WHERE	status=#{status}
+		LIMIT	#{totalRecord},#{currentMaxRecord};
 	</select>
 	
 	<insert id="insertBoardNotice">
@@ -46,5 +47,11 @@
 		SET		status=#{status}
 		WHERE	notice_id=#{noticeId};
 	</update>
+	
+	<select id="countBoardNotice">
+		SELECT count(notice_id)
+		FROM	board_notice
+		WHERE	status=#{status};
+	</select>
 	
 </mapper>

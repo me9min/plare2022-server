@@ -2,11 +2,12 @@ package org.amel.plare.board.notice.dao;
 
 import java.util.List;
 
+import org.amel.plare.BoardStatus;
 import org.amel.plare.board.notice.domain.BoardNoticeVO;
+import org.amel.plare.board.notice.domain.ListBoardNoticeVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Repository
 public class BoardNoticeDao {
@@ -14,9 +15,9 @@ public class BoardNoticeDao {
     @Autowired
     SqlSession sqlSession;
     
-    public List<BoardNoticeVO> listBoardNotice(String status) {
+    public List<BoardNoticeVO> listBoardNotice(ListBoardNoticeVO listBoardNotice) {
         
-        return sqlSession.selectList("BoardNoticeMapper.listBoardNotice", status);
+        return sqlSession.selectList("BoardNoticeMapper.listBoardNotice", listBoardNotice);
     }
 
     public int insertBoardNotice(BoardNoticeVO boardNotice) {
@@ -32,5 +33,10 @@ public class BoardNoticeDao {
     public int updateBoardNoticeStatus(BoardNoticeVO boardNotice) {
         
         return sqlSession.update("BoardNoticeMapper.updateBoardNoticeStatus", boardNotice);
+    }
+    
+    public int countBoardNotice(BoardStatus status) {
+        
+        return sqlSession.selectOne("BoardNoticeMapper.countBoardNotice");
     }
 }

@@ -1,12 +1,11 @@
 package org.amel.plare.board.notice.service;
 
-import java.util.List;
-
+import org.amel.plare.BoardStatus;
 import org.amel.plare.board.notice.dao.BoardNoticeDao;
 import org.amel.plare.board.notice.domain.BoardNoticeVO;
+import org.amel.plare.board.notice.domain.ListBoardNoticeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class BoardNoticeService {
@@ -14,9 +13,20 @@ public class BoardNoticeService {
     @Autowired
     BoardNoticeDao boardNoticeDao;
     
-    public List<BoardNoticeVO> listBoardNotice() {
+    public ListBoardNoticeVO listBoardNotice(BoardStatus stat, int max,int p) {
         
-        return boardNoticeDao.listBoardNotice("PUBLIC");
+        ListBoardNoticeVO listBoardNotice = null;
+        
+        // totalRecord에 select시작 레코드 계산후 임시저장
+        listBoardNotice.setTotalRecord(max*(p-1));
+        listBoardNotice.setCurrentMaxRecord(max);
+        
+        // 페이지당 레코드수와 페이지를 넘겨 select한다
+        listBoardNotice.setBoardNotice(boardNoticeDao.listBoardNotice(listBoardNotice));
+        // listBoardNotice의 currentMaxRecord에다 boardNotice의 레코드수를 넣는다
+        listBoardNotice.setTotalRecord(boardNoticeDao.countBoardNotice(stat));
+        
+        return listBoardNotice;
     }
     
     public int insertBoardNotice(BoardNoticeVO boardNotice) {
