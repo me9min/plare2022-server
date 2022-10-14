@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardNoticeMapper">
 	
-	<select id="listBoardNotice" resultType="BoardNoticeVO">
-		SELECT notice_id
+	<select id="listBoardNoticeAll" resultType="BoardNoticeVO">
+		SELECT	notice_id
 		,		member_id
 		,		title
 		,		content
@@ -11,30 +11,47 @@
 		,		date_of_created
 		,		ip_of_created
 		,		date_of_updated
-		,		member_id_of_updated
 		,		ip_of_updated
+		,		member_id_of_updated
+		,		status
+		FROM	board_notice;
+	</select>
+	
+	<select id="listBoardNotice" resultType="BoardNoticeVO">
+		SELECT	notice_id
+		,		member_id
+		,		title
+		,		content
+		,		views
+		,		date_of_created
+		,		ip_of_created
+		,		date_of_updated
+		,		ip_of_updated
+		,		member_id_of_updated
 		,		status
 		FROM	board_notice
-		WHERE	status='PUBLIC';
+		WHERE	status=#{status};
 	</select>
 	
 	<insert id="insertBoardNotice">
 		INSERT INTO board_notice (
-			views,		riter_id,		date_of_created,
-			title,		content
+			member_id,			title,					content,
+			date_of_created,	ip_of_created,			date_of_updated,
+			ip_of_updated,		member_id_of_updated,	status
 		) VALUES (
-			0,			#{writerId},	#{dateOfCreat ed},
-			#{title},	#{content}
+			#{memberId},		#{title},				#{content},
+			now(),				#{ipOfCreated},			now(),
+			#{ipOfUpdated},		#{memberId},			#{status}
 		);
 	</insert>
 	
 	<update id="updateBoardNotice">
-		UPDATE board_notice
-		SET		title=#{title},
+		UPDATE	board_notice
+		SET		title=#{title}
 		,		content=#{content}
-		,		date_of_updated=#{dateOfUpdate}
+		,		date_of_updated=now()
 		,		ip_of_updated=#{ipOfUpdate}
-		,		member_id_of_updated=#{memberIdOfUpdated}
+		,		member_id_of_updated=#{memberId}
 		WHERE	notice_id=#{noticeId};
 	</update>
 	
