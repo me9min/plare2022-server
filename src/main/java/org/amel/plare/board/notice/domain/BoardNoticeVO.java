@@ -1,8 +1,10 @@
 package org.amel.plare.board.notice.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.amel.plare.BoardStatus;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -19,11 +21,11 @@ public class BoardNoticeVO {
     
     private int views;
     
-    private Date dateOfCreated;
+    private LocalDateTime dateOfCreated;
     
     private String ipOfCreated;
     
-    private Date dateOfUpdated;
+    private LocalDateTime dateOfUpdated;
     
     private String ipOfUpdated;
     

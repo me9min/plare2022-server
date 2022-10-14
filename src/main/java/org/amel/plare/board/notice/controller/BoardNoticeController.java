@@ -41,4 +41,10 @@ public class BoardNoticeController {
         
         return "update된 status수: " + Integer.toString(boardNoticeService.updateBoardNoticeStatus(boardNotice));
     }
+    
+    @RequestMapping(value = "/notice/get", method = RequestMethod.GET)
+    public BoardNoticeVO getBoardNoticeById(@RequestParam int id) {
+        
+        return boardNoticeService.getBoardNoticeById(id);
+    }
 }

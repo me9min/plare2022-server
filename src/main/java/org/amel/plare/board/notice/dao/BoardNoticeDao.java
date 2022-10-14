@@ -39,4 +39,9 @@ public class BoardNoticeDao {
         
         return sqlSession.selectOne("BoardNoticeMapper.countBoardNotice");
     }
+    
+    public BoardNoticeVO getBoardNoticeById(int id) {
+        
+        return sqlSession.selectOne("BoardNoticeMapper.getBoardNoticeById", id);
+    }
 }

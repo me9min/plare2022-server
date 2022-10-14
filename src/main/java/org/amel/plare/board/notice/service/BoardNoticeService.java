@@ -15,11 +15,12 @@ public class BoardNoticeService {
     
     public ListBoardNoticeVO listBoardNotice(BoardStatus stat, int max,int p) {
         
-        ListBoardNoticeVO listBoardNotice = null;
+        ListBoardNoticeVO listBoardNotice = new ListBoardNoticeVO();
         
         // totalRecord에 select시작 레코드 계산후 임시저장
         listBoardNotice.setTotalRecord(max*(p-1));
         listBoardNotice.setCurrentMaxRecord(max);
+        listBoardNotice.setStatus(stat);
         
         // 페이지당 레코드수와 페이지를 넘겨 select한다
         listBoardNotice.setBoardNotice(boardNoticeDao.listBoardNotice(listBoardNotice));
@@ -47,5 +48,10 @@ public class BoardNoticeService {
     public int updateBoardNoticeStatus(BoardNoticeVO boardNotice) {
         
         return boardNoticeDao.updateBoardNoticeStatus(boardNotice);
+    }
+    
+    public BoardNoticeVO getBoardNoticeById(int id) {
+        
+        return boardNoticeDao.getBoardNoticeById(id);
     }
 }

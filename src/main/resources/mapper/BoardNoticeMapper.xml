@@ -3,16 +3,16 @@
 <mapper namespace="BoardNoticeMapper">
 	
 	<select id="listBoardNotice" resultType="BoardNoticeVO">
-		SELECT	notice_id
-		,		member_id
+		SELECT	notice_id AS noticeId
+		,		member_id AS memberId
 		,		title
 		,		content
 		,		views
-		,		date_of_created
-		,		ip_of_created
-		,		date_of_updated
-		,		ip_of_updated
-		,		member_id_of_updated
+		,		date_of_created	AS dateOfCreated
+		,		ip_of_created AS ipOfCreated
+		,		date_of_updated	AS dateOfUpdated
+		,		ip_of_updated AS ipOfUpdated
+		,		member_id_of_updated AS memberIdOfUpdated
 		,		status
 		FROM	board_notice
 		WHERE	status=#{status}
@@ -48,10 +48,25 @@
 		WHERE	notice_id=#{noticeId};
 	</update>
 	
-	<select id="countBoardNotice">
-		SELECT count(notice_id)
+	<select id="countBoardNotice" resultType="int">
+		SELECT	count(notice_id)
+		FROM	board_notice;
+	</select>
+	
+	<select id="getBoardNoticeById" resultType="BoardNoticeVO">
+		SELECT	notice_id AS noticeId
+		,		member_id AS memberId
+		,		title
+		,		content
+		,		views
+		,		date_of_created	AS dateOfCreated
+		,		ip_of_created AS ipOfCreated
+		,		date_of_updated	AS dateOfUpdated
+		,		ip_of_updated AS ipOfUpdated
+		,		member_id_of_updated AS memberIdOfUpdated
+		,		status
 		FROM	board_notice
-		WHERE	status=#{status};
+		WHERE	notice_id=#{id};
 	</select>
 	
 </mapper>

@@ -2,6 +2,8 @@ package org.amel.plare.board.notice.domain;
 
 import java.util.List;
 
+import org.amel.plare.BoardStatus;
+
 import lombok.Data;
 
 @Data
@@ -14,4 +16,7 @@ public class ListBoardNoticeVO {
     
     // 현재 페이지의 최대레코드수 예) 10개씩보기, 50개씩보기
     private int currentMaxRecord;
+    
+    // 상태
+    private BoardStatus status;
 }
