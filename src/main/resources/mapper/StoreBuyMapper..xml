@@ -2,13 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="StoreBuyMapper">
 	
-	<select id="getCreditById" resultType="int">
-		SELECT	credit
+	<select id="getCreditsById" resultType="int">
+		SELECT	credits
 		FROM	store.store_players
 		WHERE	id=#{id};
 	</select>
 	
-	<insert id="insertItems">
-	</insert>
+	<update id="updateCreditsById">
+		UPDATE	store.store_players
+		SET		credits=credits-#{credits}
+		WHERE	id=#{id};
+	</update>
+	
+	<select id="getIdBySteamid" resultType="int">
+		SELECT	id
+		FROM	store.store_players
+		WHERE	authid=#{steamid};
+	</select>
 	
 </mapper>

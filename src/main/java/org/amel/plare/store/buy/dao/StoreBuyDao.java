@@ -10,8 +10,20 @@ public class StoreBuyDao {
     @Autowired
     SqlSession sqlSession;
      
-    public int getCreditById(int id) {
+    public int getCreditsById(int id) {
         
-        return sqlSession.selectOne("StoreBuyeMapper.getCreditById", id);
+        return sqlSession.selectOne("StoreBuyeMapper.getCreditsById", id);
     }
+    
+    public int updateCreditsById(int id) {
+        
+        return sqlSession.update("StoreBuyeMapper.updateCreditsById", id);
+    }
+    
+    public int getIdBySteamid(String steamid) {
+        
+        return sqlSession.selectOne("StoreBuyeMapper.getIdBySteamid", steamid);
+    }
+    
+    public 
 }
