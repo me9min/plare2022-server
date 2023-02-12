@@ -1,9 +1,7 @@
 package org.amel.plare.board.notice.domain;
 
 import java.util.List;
-
-import org.amel.plare.BoardStatus;
-
+import org.amel.plare.board.BoardStatus;
 import lombok.Data;
 
 @Data

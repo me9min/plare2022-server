@@ -1,4 +1,4 @@
-package org.amel.plare;
+package org.amel.plare.board;
 
 public enum BoardStatus {
 	PUBLIC, PRIVATE, BLOCK

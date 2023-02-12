@@ -3,21 +3,33 @@
 <mapper namespace="MemberMapper">
 
 	<select id="findPasswordById" resultType="String">
-		SELECT password
-		FROM plaredb.member
-		WHERE auth_id = #{auth_id};
+		SELECT	password
+		FROM	plaredb.member
+		WHERE	auth_id=#{auth_id};
 	</select>
 
 	<insert id="insertMember">
-		INSERT INTO plaredb.member
-		(auth_id, password, name, email, date_of_join, date_of_last_join, steamid)
-		VALUES(#{auth_id}, #{password}, #{name}, #{email}, UNIX_TIMESTAMP(), UNIX_TIMESTAMP(), #{steamid});
+		INSERT INTO plaredb.member (
+			auth_id,		password,			name,
+			email,			date_of_join,		date_of_last_join,
+			steamid
+		) VALUES (
+			#{auth_id},		#{password},		#{name},
+			#{email},		UNIX_TIMESTAMP(),	UNIX_TIMESTAMP(),
+			#{steamid}
+		);
 	</insert>
 
 	<select id="selectOneMember" resultType="MemberVO">
-		SELECT auth_id, password, name, email, date_of_join, date_of_last_join, steam_id
-		FROM plaredb.member
-		WHERE auth_id = #{authId}
+		SELECT	auth_id
+		,		password
+		,		name
+		,		email
+		,		date_of_join
+		,		date_of_last_join
+		,		steam_id
+		FROM	plaredb.member
+		WHERE	auth_id=#{authId};
 	</select>
 
 </mapper>

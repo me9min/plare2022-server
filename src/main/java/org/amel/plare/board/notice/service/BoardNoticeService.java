@@ -1,6 +1,5 @@
 package org.amel.plare.board.notice.service;
 
-import org.amel.plare.BoardStatus;
 import org.amel.plare.board.notice.dao.BoardNoticeDao;
 import org.amel.plare.board.notice.domain.BoardNoticeVO;
 import org.amel.plare.board.notice.domain.ListBoardNoticeVO;

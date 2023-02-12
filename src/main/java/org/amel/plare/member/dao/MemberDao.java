@@ -12,11 +12,17 @@ public class MemberDao {
 	SqlSession sqlSession;
 
 	public int insertMember(MemberVO member) {
-
+		
 		return sqlSession.insert("MemberMapper.insertMember", member);
 	}
 
 	public MemberVO selectOneMember(String authId) {
+		
 		return sqlSession.selectOne("MemberMapper.selectOneMember", authId);
+	}
+	
+	public String findPasswordById(String authId) {
+		
+		return sqlSession.selectOne("MemberMapper.findPasswordById", authId);
 	}
 }
