@@ -18,6 +18,21 @@
 		WHERE	status=#{status}
 		LIMIT	#{totalRecord},#{currentMaxRecord};
 	</select>
+
+	<select id="listBoardNoticeAll" resultType="BoardNoticeVO">
+		SELECT	notice_id
+		,		member_id
+		,		title
+		,		content
+		,		views
+		,		date_of_created
+		,		ip_of_created
+		,		date_of_updated
+		,		ip_of_updated
+		,		member_id_of_updated
+		,		status
+		FROM	board_notice;
+	</select>
 	
 	<insert id="insertBoardNotice">
 		INSERT INTO board_notice (

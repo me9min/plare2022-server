@@ -1,6 +1,6 @@
 package org.amel.plare.board.qna.domain;
 
-import org.amel.plare.BaseEntitiy;
+import org.amel.plare.board.BaseEntitiy;
 
 import lombok.Getter;
 import lombok.Setter;
