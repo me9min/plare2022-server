@@ -1,11 +1,11 @@
-package org.amel.plare.qna.controller;
+package org.amel.plare.board.qna.controller;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.amel.plare.qna.domain.AnswerVO;
-import org.amel.plare.qna.service.AnswerService;
+import org.amel.plare.board.qna.domain.AnswerVO;
+import org.amel.plare.board.qna.service.AnswerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

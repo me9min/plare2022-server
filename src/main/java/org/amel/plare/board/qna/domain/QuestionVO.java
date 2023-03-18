@@ -1,4 +1,4 @@
-package org.amel.plare.qna.domain;
+package org.amel.plare.board.qna.domain;
 
 import org.amel.plare.BaseEntitiy;
 

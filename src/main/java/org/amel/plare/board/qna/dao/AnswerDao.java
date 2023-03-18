@@ -1,8 +1,8 @@
-package org.amel.plare.qna.dao;
+package org.amel.plare.board.qna.dao;
 
 import java.util.List;
 
-import org.amel.plare.qna.domain.AnswerVO;
+import org.amel.plare.board.qna.domain.AnswerVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 

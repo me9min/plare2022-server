@@ -1,9 +1,9 @@
-package org.amel.plare.qna.service;
+package org.amel.plare.board.qna.service;
 
 import java.util.List;
 
-import org.amel.plare.qna.dao.QuestionDao;
-import org.amel.plare.qna.domain.QuestionVO;
+import org.amel.plare.board.qna.dao.QuestionDao;
+import org.amel.plare.board.qna.domain.QuestionVO;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;

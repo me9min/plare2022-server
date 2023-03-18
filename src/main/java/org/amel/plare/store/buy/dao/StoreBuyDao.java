@@ -24,6 +24,4 @@ public class StoreBuyDao {
         
         return sqlSession.selectOne("StoreBuyeMapper.getIdBySteamid", steamid);
     }
-    
-    public 
 }

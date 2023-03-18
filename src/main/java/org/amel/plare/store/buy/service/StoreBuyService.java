@@ -13,9 +13,7 @@ public class StoreBuyService {
     
     public int storeBuyCart(StoreBuyVO storeBuy) {
         
-        
-        
-        storeBuyDao.getCreditsById();
+        //storeBuyDao.getCreditsById();
         
         return 1;
     }
