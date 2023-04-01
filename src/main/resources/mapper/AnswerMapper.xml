@@ -31,7 +31,7 @@
 		,		status
 		FROM	plare.board_answer
 		where 	status = 'PUBLIC'
-		and 	board_answer_id=#{boardanswerId}
+		and 	board_answer_id=#{boardAnswerId}
 	</select>
 	<insert id="insertAnswer" >
 		INSERT INTO plare.board_answer ( 
@@ -49,7 +49,7 @@
 		,		date_of_updated=NOW()
 		,		member_id_of_updated=#{memberId}
 		,		ip_of_updated=#{ipOfUpdated}	
-		WHERE	board_answer_id=#{boardanswerId};
+		WHERE	board_answer_id=#{boardAnswerId};
 		AND 	member_id=#{memberId}
 		AND 	status='PUBLIC'
 	</update>
@@ -57,7 +57,7 @@
 		UPDATE	plare.board_answer
 		SET		status='PRIVATE'
 		,		ip_of_updated=#{ipOfUpdated}	
-		WHERE	board_answer_id=#{boardanswerId}
+		WHERE	board_answer_id=#{boardAnswerId}
 		AND 	member_id=#{memberId}
 		AND 	status='PUBLIC'
 	</update>

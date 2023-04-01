@@ -2,6 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardNoticeMapper">
 	
+	<select id="listBoardNotice" resultType="BoardNoticeVO">
+		SELECT	notice_id AS noticeId
+		,		member_id AS memberId
+		,		title
+		,		content
+		,		views
+		,		date_of_created	AS dateOfCreated
+		,		ip_of_created AS ipOfCreated
+		,		date_of_updated	AS dateOfUpdated
+		,		ip_of_updated AS ipOfUpdated
+		,		member_id_of_updated AS memberIdOfUpdated
+		,		status
+		FROM	board_notice
+		WHERE	status=#{status}
+		LIMIT	#{totalRecord},#{currentMaxRecord};
+	</select>
+
 	<select id="listBoardNoticeAll" resultType="BoardNoticeVO">
 		SELECT	notice_id
 		,		member_id
@@ -15,22 +32,6 @@
 		,		member_id_of_updated
 		,		status
 		FROM	board_notice;
-	</select>
-	
-	<select id="listBoardNotice" resultType="BoardNoticeVO">
-		SELECT	notice_id
-		,		member_id
-		,		title
-		,		content
-		,		views
-		,		date_of_created
-		,		ip_of_created
-		,		date_of_updated
-		,		ip_of_updated
-		,		member_id_of_updated
-		,		status
-		FROM	board_notice
-		WHERE	status=#{status};
 	</select>
 	
 	<insert id="insertBoardNotice">
@@ -50,9 +51,37 @@
 		SET		title=#{title}
 		,		content=#{content}
 		,		date_of_updated=now()
-		,		ip_of_updated=#{ipOfUpdate}
-		,		member_id_of_updated=#{memberId}
+		,		ip_of_updated=#{ipOfUpdated}
+		,		member_id_of_updated=#{memberIdOfUpdated}
+		,		status=#{status}
 		WHERE	notice_id=#{noticeId};
 	</update>
+	
+	<update id="updateBoardNoticeStatus">
+		UPDATE	board_notice
+		SET		status=#{status}
+		WHERE	notice_id=#{noticeId};
+	</update>
+	
+	<select id="countBoardNotice" resultType="int">
+		SELECT	count(notice_id)
+		FROM	board_notice;
+	</select>
+	
+	<select id="getBoardNoticeById" resultType="BoardNoticeVO">
+		SELECT	notice_id AS noticeId
+		,		member_id AS memberId
+		,		title
+		,		content
+		,		views
+		,		date_of_created	AS dateOfCreated
+		,		ip_of_created AS ipOfCreated
+		,		date_of_updated	AS dateOfUpdated
+		,		ip_of_updated AS ipOfUpdated
+		,		member_id_of_updated AS memberIdOfUpdated
+		,		status
+		FROM	board_notice
+		WHERE	notice_id=#{id};
+	</select>
 	
 </mapper>
